@@ -48,8 +48,7 @@ struct ContentView: View {
                     ZStack {
                         Circle()
                             .stroke(ring.color, lineWidth: 10)
-                            //.frame(width: radius * (ring.id / 2), height: radius * (ring.id / 2))
-                            .frame(width: radius * (ring.id), height: radius * (ring.id))
+                            .frame(width: radius * (ring.id / 2), height: radius * (ring.id / 2))
                             .position(x: 200, y: (yPosition * ring.id/2))
                         
                         Image(systemName: "star.fill")
