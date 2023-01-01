@@ -26,6 +26,7 @@ struct ContentView: View {
                           Rings(id: 8, color: Color.cyan, setY: 45),
                           Rings(id: 9, color: Color.cyan, setY: 50),
                           Rings(id: 10, color: Color.green, setY: 55),]
+
     var radius: CGFloat = 40
     var yPosition: CGFloat = 100
     
@@ -44,7 +45,7 @@ struct ContentView: View {
                 .offset(x: 0, y: 100)
                 
             ZStack {
-                ForEach(rings, id: \.self.id) { ring in
+                ForEach(rings.reversed(), id: \.self.id) { ring in
                     ZStack {
                         Circle()
                             .stroke(ring.color, lineWidth: 10)
@@ -58,7 +59,7 @@ struct ContentView: View {
                             .offset(x: (radius * (ring.id / 2) / 2), y: 0)
                             .rotation3DEffect(Angle.degrees(isSpinning ? 360 : 0), axis: (x: 0, y: 0, z: 1))
                             .position(x: 200, y: (yPosition * ring.id/2))
-                            .animation(.linear(duration: 1).repeatForever(autoreverses: false).delay(0).speed(0.5), value: isSpinning)
+                            .animation(.linear(duration: 1).repeatForever(autoreverses: false).delay(0).speed(CGFloat(ring.id / 10)), value: isSpinning)
                     }
                     .rotation3DEffect(Angle.degrees(55), axis: (x: 1, y: 0, z: 0))
                     .offset(x: 0, y: ring.setY)
